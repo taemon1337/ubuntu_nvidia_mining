@@ -1,0 +1,21 @@
+[Unit]
+Description=eth miner
+
+[Service]
+Environment=GPU_FORCE_64BIT_PTR=0
+Environment=GPU_MAX_HEAP_SIZE=100
+Environment=GPU_USE_SYNC_OBJECTS=1
+Environment=GPU_MAX_ALLOC_PERCENT=100
+Environment=GPU_SINGLE_ALLOC_PERCENT=100
+
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/tim/.Xauthority
+
+WorkingDirectory=/home/tim/
+ExecStart=/bin/bash --login -c "ethminer -G -U --farm-recheck 200 -S us1.ethermine.org:14444 -FS us1.ethermine.org:4444 -O 0x52CeF1f8d39C350512781676D0e4174642cB3a42.teth"
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

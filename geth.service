@@ -1,0 +1,12 @@
+[Unit]
+Description=Ethereum go client
+
+[Service]
+Type=simple
+ExecStart=/bin/bash --login -c "geth --rpc --fast --cache=1024"
+
+Restart=always
+
+
+[Install]
+WantedBy=default.target

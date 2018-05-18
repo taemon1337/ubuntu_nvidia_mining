@@ -1,0 +1,42 @@
+# add drivers ppa
+sudo add-apt-repository ppa:graphics-drivers/ppa
+
+# update ppa
+sudo apt-get update
+
+# find latest nvidia driver
+sudo apt-cache search nvidia | grep -P '^nvidia-[0-9]+\s'
+
+# install latest nvidia driver
+sudo apt install nvidia-driver-396
+
+# check nvidia and nouveau drivers (before reboot nvidia should be blank and nouveau should be listed)
+lsmod | grep nouveau
+lsmod | grep nvidia
+
+# reboot to use nvidia
+sudo reboot
+
+# nvidia should be listed and nouveau should be blank now
+lsmod | grep nouveau
+lsmod | grep nvidia
+
+
+# setup ethminer
+download ethminer and tar -xzvf it
+./bin/ethminer --list-devices
+sudo mv bin/ethminer /usr/loca/bin/
+sudo chown root. /usr/local/bin/ethminer
+
+# setup ethminer systemd service
+put the ethminer.service into /etc/systemd/system/
+sudo systemctl start ethminer
+
+# setup geth
+download geth from geth.ethereum.org
+sudo mv geth*/geth /usr/loca/bin/
+sudo chown root. /usr/local/bin/geth
+
+# setup geth systemd service
+put the geth.service into /etc/systemd/system/
+sudo systemctl start geth
